@@ -325,6 +325,8 @@ nav a{
 }
 
 .piece-card a{
+    display:inline-block;
+    margin-top:14px;
     color:var(--text);
     text-decoration:none;
     border-bottom:2px solid var(--red);
