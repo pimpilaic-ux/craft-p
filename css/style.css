@@ -428,6 +428,103 @@ nav a{
     object-fit:cover;
     border-radius:4px;
 }
+
+/* Product image lightbox */
+.lightbox-image{
+    cursor:zoom-in;
+}
+
+.lightbox-image:focus-visible{
+    outline:2px solid var(--red);
+    outline-offset:4px;
+}
+
+.image-lightbox[hidden]{
+    display:none;
+}
+
+.image-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:56px;
+    background:rgba(17, 17, 17, .92);
+}
+
+.image-lightbox img{
+    width:auto;
+    max-width:92vw;
+    max-height:88vh;
+    object-fit:contain;
+    border-radius:4px;
+}
+
+.lightbox-close{
+    position:absolute;
+    top:18px;
+    right:26px;
+    width:44px;
+    height:44px;
+    border:0;
+    background:transparent;
+    color:#fff;
+    font:300 42px/1 "IBM Plex Sans", sans-serif;
+    cursor:pointer;
+}
+
+.lightbox-open{
+    overflow:hidden;
+}
+
+/* Previous / next product navigation */
+.piece-navigation{
+    grid-column:1 / -1;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-top:24px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+}
+
+.piece-nav-link{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    border:0;
+    padding:0;
+}
+
+.piece-nav-link.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    cursor: default;
+}
+
+.piece-nav-link span{
+    color:var(--text-light);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.piece-nav-link strong{
+    font-size:18px;
+    font-weight:500;
+}
+
+.piece-nav-next{
+    text-align:right;
+    align-items:flex-end;
+}
+
+.piece-nav-link:hover strong{
+    color:var(--red);
+}
+
 .piece-card-image img{
     width:100%;
     height:100%;
@@ -599,6 +696,26 @@ nav a{
     .makers-note p{
         font-size:20px;
         line-height:1.7;
+    }
+
+    .piece-navigation{
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+        margin-top:56px;
+        padding-top:28px;
+    }
+
+    .piece-nav-link strong{
+        font-size:16px;
+    }
+
+    .image-lightbox{
+        padding:48px 16px 24px;
+    }
+
+    .image-lightbox img{
+        max-width:100%;
+        max-height:82vh;
     }
 }
 

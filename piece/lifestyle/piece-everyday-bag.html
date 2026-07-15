@@ -29,16 +29,15 @@
     </nav>
 </header>
 
-<body>
-<<main class="piece-page">
+<main class="piece-page">
 
     <section class="piece-photo">
 
-        <img src="../../images/pieces/everyday-bag.jpg" alt="Every Day Drawstring Bag" class="main-photo">
+        <img src="../../images/pieces/everyday-bag.jpg" alt="Every Day Drawstring Bag" class="main-photo lightbox-image" tabindex="0">
 
         <div class="piece-gallery">
-            <img src="../../images/pieces/everyday-bag-detail.jpg" alt="Every Day embroidery detail">
-            <img src="../../images/pieces/everyday-bag-back.jpg" alt="Every Day bag back view">
+            <img src="../../images/pieces/everyday-bag-detail.jpg" alt="Every Day embroidery detail" class="lightbox-image" tabindex="0">
+            <img src="../../images/pieces/everyday-bag-back.jpg" alt="Every Day bag back view" class="lightbox-image" tabindex="0">
         </div>
 
     </section>
@@ -89,7 +88,63 @@
 
     </section>
 
-</main>
+        <nav class="piece-navigation" aria-label="Browse Lifestyle pieces">
+			<div class="piece-nav-link piece-nav-previous disabled">
+        		<span>Previous Piece</span>
+        		<strong>Start of Collection</strong>
+    		</div>
+
+            <a href="piece-quilt-pouch.html" class="piece-nav-link piece-nav-next">
+                <span>Next Piece</span>
+                <strong>Quilt Pouch &rarr;</strong>
+            </a>
+        </nav>
+
+    </main>
+
+    <div class="image-lightbox" role="dialog" aria-modal="true" aria-label="Expanded product image" hidden>
+        <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        const lightbox = document.querySelector('.image-lightbox');
+        const lightboxPhoto = lightbox.querySelector('img');
+        const closeButton = lightbox.querySelector('.lightbox-close');
+        const galleryImages = document.querySelectorAll('.lightbox-image');
+
+        function openLightbox(image) {
+            lightboxPhoto.src = image.src;
+            lightboxPhoto.alt = image.alt;
+            lightbox.hidden = false;
+            document.body.classList.add('lightbox-open');
+            closeButton.focus();
+        }
+
+        function closeLightbox() {
+            lightbox.hidden = true;
+            lightboxPhoto.src = '';
+            document.body.classList.remove('lightbox-open');
+        }
+
+        galleryImages.forEach((image) => {
+            image.addEventListener('click', () => openLightbox(image));
+            image.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openLightbox(image);
+                }
+            });
+        });
+
+        closeButton.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+        });
+    </script>
 </body>
 
 </html>
